@@ -33,13 +33,12 @@ for i in range(cantidad):
     while True:
         try:
             paquetes_cantidad = int(input("Ingrese la cantidad de paquetes: "))
-            if paquetes_cantidad <0:
+            if paquetes_cantidad < 0:
                 print("La cantidad debe de ser positiva")
             else:
                 break
         except ValueError:
             print("Ingrese un numero valido")
-
 
     while True:
         zona = input("Ingrese la zona del repartidor: ")
@@ -51,7 +50,7 @@ for i in range(cantidad):
         "paquetes_cantidad": paquetes_cantidad,
         "zona": zona
     }
-    total_paquetes = total_paquetes+paquetes_cantidad
+    total_paquetes = total_paquetes + paquetes_cantidad
 
 print("=== Registro original ===")
 for nombre, valor in mensajeria.items():
@@ -67,11 +66,33 @@ print("=== Busqueda ===")
 buscar_nombre = input("Ingrese el nombre: ")
 resultadoA = busqueda_de_valor(mensajeria, buscar_nombre)
 if resultadoA is not None:
-        print(f"{buscar_nombre} entregó {resultadoA['paquetes_cantidad']} paquetes en la zona {resultadoA['zona']}.")
+    print(f"{buscar_nombre} entregó {resultadoA['paquetes_cantidad']} paquetes en la zona {resultadoA['zona']}.")
 else:
     print("No se ha encontrado el resultado")
 
 print("=== Estadisticas ===")
 print(f"Total de paquetes entregados: {total_paquetes}")
-promedio = total_paquetes/cantidad
+promedio = total_paquetes / cantidad
 print(f"Promedio de paquetes: {promedio:.2f}")
+
+mayor_nombre = ""
+mayor_datos = {}
+menor_nombre = ""
+menor_datos = {}
+primer = True
+
+for nombre, valor in mensajeria.items():
+    if primer:
+        mayor_nombre = menor_nombre = nombre
+        mayor_datos = menor_datos = valor
+        primer = False
+    else:
+        if valor["paquetes_cantidad"] > mayor_datos["paquetes_cantidad"]:
+            mayor_nombre = nombre
+            mayor_datos = valor
+        if valor["paquetes_cantidad"] < menor_datos["paquetes_cantidad"]:
+            menor_nombre = nombre
+            menor_datos = valor
+
+print(f"Mayor número de entregas: {mayor_nombre} ({mayor_datos["paquetes_cantidad"]})")
+print(f"Menor número de entregas: {menor_nombre} ({menor_datos["paquetes_cantidad"]})")
