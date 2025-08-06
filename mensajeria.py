@@ -7,10 +7,35 @@ def quick_sort(lista):
     iguales = [x for x in lista if x == pivote]
     mayores = [x for x in lista[1:] if x > pivote]
 
-    return quick_sort(menores)+iguales+quick_sort(mayores)
+    return quick_sort(menores) + iguales + quick_sort(mayores)
 
-def busqueda_de_valor(lista,valor):
+
+def busqueda_de_valor(lista, valor):
     for elemento in lista:
         return elemento
     return None
 
+
+mensajeria = {}
+print("===Registro de mensajeria ===")
+cantidad = int(input("Ingrese la cantidad de repartidores que participaron: "))
+for i in range(cantidad):
+    print(f"Repartidor #{i + 1}")
+    mensajeria_nombre = input("Ingrese el nombre del repartido: ")
+    paquetes_cantidad = int(input("Ingrese la cantidad de paquetes: "))
+    zona = input("Ingrese la zona del repartido: ")
+    mensajeria[mensajeria_nombre] = {
+        "paquetes_cantidad": paquetes_cantidad,
+        "zona": zona
+    }
+repartidores = list(mensajeria.items())
+print("=== Registro original ===")
+for nombre, valor in mensajeria.items():
+    print("nombre: ", nombre)
+    print("paquetes : ", valor["paquetes_cantidad"])
+    print("zona: ", valor["zona"])
+
+print("=== Ranking ===")
+resultado = quick_sort(repartidores)
+for resultados in resultado:
+    print(resultado)
