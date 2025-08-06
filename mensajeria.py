@@ -11,8 +11,8 @@ def quick_sort(lista):
 
 
 def busqueda_de_valor(lista, valor):
-    for elemento in lista:
-        return elemento
+    for nombre,elemento in lista:
+        return (nombre,elemento)
     return None
 
 
@@ -21,7 +21,7 @@ print("===Registro de mensajeria ===")
 cantidad = int(input("Ingrese la cantidad de repartidores que participaron: "))
 for i in range(cantidad):
     print(f"Repartidor #{i + 1}")
-    mensajeria_nombre = input("Ingrese el nombre del repartido: ")
+    mensajeria_nombre = input("Ingrese el nombre del repartidor: ")
     paquetes_cantidad = int(input("Ingrese la cantidad de paquetes: "))
     zona = input("Ingrese la zona del repartido: ")
     mensajeria[mensajeria_nombre] = {
@@ -32,10 +32,19 @@ repartidores = list(mensajeria.items())
 print("=== Registro original ===")
 for nombre, valor in mensajeria.items():
     print("nombre: ", nombre)
-    print("paquetes : ", valor["paquetes_cantidad"])
+    print("paquetes: ", valor["paquetes_cantidad"])
     print("zona: ", valor["zona"])
 
 print("=== Ranking ===")
 resultado = quick_sort(repartidores)
-for resultados in resultado:
-    print(resultado)
+for nombre, valor in resultado:
+    print(f"nombre: {nombre}, paquetes: {valor['paquetes_cantidad']}, zona: {valor['zona']}")
+
+print("=== Busqueda ===")
+buscar_nombre = input("Ingrese el nombre: ")
+resultadoA = busqueda_de_valor(resultado, buscar_nombre)
+nombre, valor = resultadoA
+if resultadoA is not None:
+        print(f"{nombre} entrego {valor["paquetes_cantidad"]} paquetes en la zona {valor['zona']}")
+else:
+    print("No se ha encontrado el resultado")
