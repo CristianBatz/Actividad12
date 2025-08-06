@@ -10,9 +10,9 @@ def quick_sort(lista):
     return quick_sort(menores) + iguales + quick_sort(mayores)
 
 
-def busqueda_de_valor(lista, valor):
-    for nombre,elemento in lista:
-        return (nombre,elemento)
+def busqueda_de_valor(lista, objetivo):
+    for elemento in lista:
+        return elemento
     return None
 
 
@@ -43,8 +43,7 @@ for nombre, valor in resultado:
 print("=== Busqueda ===")
 buscar_nombre = input("Ingrese el nombre: ")
 resultadoA = busqueda_de_valor(resultado, buscar_nombre)
-nombre, valor = resultadoA
 if resultadoA is not None:
-        print(f"{nombre} entrego {valor["paquetes_cantidad"]} paquetes en la zona {valor['zona']}")
+        print(f"{resultadoA}")
 else:
     print("No se ha encontrado el resultado")
