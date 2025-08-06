@@ -17,6 +17,7 @@ def busqueda_de_valor(lista, objetivo):
 
 
 mensajeria = {}
+total_paquetes = 0
 print("===Registro de mensajeria ===")
 cantidad = int(input("Ingrese la cantidad de repartidores que participaron: "))
 for i in range(cantidad):
@@ -28,6 +29,7 @@ for i in range(cantidad):
         "paquetes_cantidad": paquetes_cantidad,
         "zona": zona
     }
+    total_paquetes = paquetes_cantidad+total_paquetes
 repartidores = list(mensajeria.items())
 print("=== Registro original ===")
 for nombre, valor in mensajeria.items():
@@ -47,3 +49,8 @@ if resultadoA is not None:
         print(f"{resultadoA}")
 else:
     print("No se ha encontrado el resultado")
+
+print("=== Estadisticas ===")
+print(f"Total de paquetes entregados: {total_paquetes}")
+promedio = total_paquetes/cantidad
+print(f"Promedio de paquetes: {promedio}")
